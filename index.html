@@ -1,0 +1,226 @@
+<html>
+<head>
+
+<style>
+div#loadingShadow {
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0px;
+    left:0px;
+    background: rgba(0, 0, 0, 0.7);
+}
+div#loading {
+    width:200px;
+    height:24px;
+    line-height:24px;
+    position:fixed;
+    top:50%;
+    left:50%;
+    margin-left:-100px;
+    margin-top:-12px;
+    background:#FFF;
+    padding:5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+}
+.bold {
+    font-weight:bold;
+}
+#menu {
+    width:600px;
+    float:left;
+}
+#volumeSlider {
+    width:200px;
+    float:left;
+}
+</style>
+<script src="/static/js/dojo/dojo/dojo.js" type="text/javascript" djConfig="parseOnLoad: true"></script>
+<link rel="stylesheet" type="text/css" href="/static/js/dojo/dijit/themes/tundra/tundra.css"
+        />
+<script type="text/javascript">
+var Player = new Object();
+var progressSlider, volumeSlider;
+var ols = new Array();
+
+Player.onInit = function() {
+    this.position = 0;
+    this.nowPlaying = 0;
+    this._p = document.getElementById("pos");
+    this.flash = document.getElementById("myFlash");
+    
+    this.songs = new Array();
+    
+    this.load();
+};
+
+Player.onUpdate = function() {
+    var isPlaying = (this.isPlaying == "true");
+    //this.position;
+    //this.duration;
+    //this.bytesPercent;
+    
+    
+    this._p = document.getElementById("pos");
+    this._b = document.getElementById("bits");
+    var _percent = this.position / (this.duration / 100);
+    this._p.innerHTML = this.position + '/' + this.duration + '|' + _percent;
+    this._b.innerHTML = this.bytesLoaded + "/" + this.bytesTotal + " ("     + this.bytesPercent + "%)";
+
+    //progressSlider.setValue(_percent);
+    if (this.bytesPercent == 100) {
+        var onePercent = this.duration/100;
+        if (this.position/onePercent > 99) {
+            this.playNext();
+        }
+    }
+
+}
+Player.play = function(id) {
+    var _uri = 'http://www.ex.ua/get/450580';
+    console.log(id);
+    if (undefined != this.songs[id]) {
+        _uri = this.songs[id].uri;
+    } else {
+        id = 0;
+    }
+    this.nowPlaying = id;
+    
+    this.flash.SetVariable("method:setUrl", _uri);
+    this.flash.SetVariable("method:play", "");
+    this.flash.SetVariable("enabled", "true");
+    this.setVolume(volumeSlider.value);
+    
+    for (var d in ols) {
+        dojo.removeClass(ols[d],'bold');
+    }
+    dojo.addClass(ols[id],'bold');
+}
+
+Player.pause = function() {
+    this.flash.SetVariable("method:pause", "");
+}
+
+Player.stop = function() {
+    this.flash.SetVariable("method:stop", "");
+}
+
+Player.load = function() {
+    dojo.xhrGet({
+        url:"/main.json",
+        handleAs:"json",
+        load: function(data){
+            console.log('Loading complete');
+            var list = document.getElementById('playlist');
+            for(var i in data['songs']){
+               ols[i] = document.createElement('li');
+               ols[i].ids = i;
+               ols[i].onclick = function() {
+                   Player.play(this.ids);
+               };
+               ols[i].innerHTML = data['songs'][i].name + ' (' + data['songs'][i].authorName + ')';
+               
+               list.appendChild(ols[i]);
+            }
+            Player.songs = data['songs'];
+            
+            var loading = document.getElementById('loading');
+            loading.style.display = 'none';
+            var loadingShadow = document.getElementById('loadingShadow');
+            loadingShadow.style.display = 'none';
+        }
+    });
+}
+
+Player.setProgress = function(percent) {
+    this.flash.SetVariable("method:setPosition", percent * (this.duration/100));
+}
+
+Player.setVolume = function(percent) {
+    this.flash.SetVariable("method:setVolume", percent);
+}
+
+Player.playNext = function() {
+    var nextId = (this.nowPlaying+1 == this.songs.length) ? 0 : parseInt(this.nowPlaying)+1;
+    this.play(nextId);
+}
+
+Player.playPrev = function() {
+    var prevId = (this.nowPlaying == 0) ? this.songs.length-1 : parseInt(this.nowPlaying)-1;
+    this.play(prevId);
+}
+
+</script>
+</head>
+<body class="tundra">
+<object 
+    class="playerpreview" 
+    id="myFlash" 
+    type="application/x-shockwave-flash" 
+    data="/static/player_mp3_js.swf" 
+    width="1" 
+    height="1">
+    
+    <param name="movie" value="/static/player_mp3_js.swf" />
+    <param name="AllowScriptAccess" value="always" />
+    <param name="FlashVars" value="listener=Player&amp;interval=500" />
+    
+</object>
+<div id="menu">
+<a href="javascript:void(0);" onclick="Player.playPrev();">Prev</a>
+<a href="javascript:void(0);" onclick="Player.play();">Play</a>
+<a href="javascript:void(0);" onclick="Player.pause();">Pause</a>
+<a href="javascript:void(0);" onclick="Player.playNext();">Next</a>
+|
+<a href="javascript:void(0);" onclick="Player.stop();">Stop</a>
+</div>
+<div id="volumeSlider"></div>
+
+<br clear="all" /><span id="pos"></span><br />
+<span id="bits"></span>
+
+        
+        
+        <div id="progressSlider">
+        </div>
+        
+
+<ul id="playlist"></ul>
+<div id="loadingShadow">&nbsp;</div>
+
+<div id="loading">Loading..</div>
+    <script type="text/javascript">
+        dojo.require("dijit.form.Slider");
+        dojo.require("dijit.form.TextBox"); // this we only include to make the textinput look prettier
+        dojo.addOnLoad(function() {
+
+            volumeSlider = new dijit.form.HorizontalSlider({
+                name: "volume",
+                value: 5,
+                minimum: 0,
+                maximum: 100,
+                intermediateChanges: true,
+                style: "width:200px;",
+                onChange: function(value) {
+                    Player.setVolume(value);
+                }
+            },
+            "volumeSlider");
+            progressSlider = new dijit.form.HorizontalSlider({
+                name: "progress",
+                value: 0,
+                minimum: 0,
+                maximum: 100,
+                intermediateChanges: true,
+                style: "width:600px;",
+                onChange: function(value) {
+                    Player.setProgress(value);
+                }
+            },
+            "progressSlider");
+        });
+    </script>
+</body>
+</html>

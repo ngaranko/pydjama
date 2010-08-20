@@ -1,0 +1,100 @@
+<html>
+<head>
+<link rel="stylesheet" href="/static/css/default.css" type="text/css" />
+
+<script type="text/javascript">
+{% if user %}
+    var mainJsonUri = '/api/songs/main.json';
+    var isUser = true;
+{% else %}
+    var mainJsonUri = '/main.json';
+    var isUser = false;
+{% endif %}
+
+</script>
+<script src="http://ajax.googleapis.com/ajax/libs/dojo/1.5/dojo/dojo.xd.js" type="text/javascript" djConfig="parseOnLoad: true"></script>
+<script src="/static/js/player/player.js" type="text/javascript"></script>
+<script type="text/javascript">
+var progressSlider, volumeSlider;
+
+</script>
+</head>
+<body class="tundra">
+<object 
+    class="playerpreview" 
+    id="myFlash" 
+    type="application/x-shockwave-flash" 
+    data="/static/player_mp3_js.swf" 
+    width="1" 
+    height="1">
+    
+    <param name="movie" value="/static/player_mp3_js.swf" />
+    <param name="AllowScriptAccess" value="always" />
+    <param name="FlashVars" value="listener=Player&amp;interval=500" />
+    
+</object>
+<div id="menu">
+    <div class="menu">
+      <ul>
+        <li>
+            <a href="javascript:void(0);" onclick="Player.playPrev();">
+                <img src="/static/images/icons/blacks/48x48/playback_prev.png" alt="Previous" />
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="Player.play();">
+                <img src="/static/images/icons/blacks/48x48/playback_play.png" alt="Play" />
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="Player.pause();">
+                <img src="/static/images/icons/blacks/48x48/playback_pause.png" alt="Pause" />
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="Player.playNext();">
+                <img src="/static/images/icons/blacks/48x48/playback_next.png" alt="Next" />
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" onclick="Player.stop();">
+                <img src="/static/images/icons/blacks/48x48/playback_stop.png" alt="Stop" />
+            </a>
+        </li>
+      </ul>
+    </div>
+    <div class="playingInfo">
+        <div id="filled">&nbsp;</div>
+        <div id="downloadFilled">&nbsp;</div>
+        <div class="song">
+            <span id="nowName">Not Playing now</span><br />
+            <a href="#" id="downloadIt" target="_blank"><img src="/static/images/icons/white/16x16/download.png" alt="Download this song" align="left" /></a>
+        </div>
+    </div>
+</div>
+<div id="info">
+<br clear="all" /><span id="pos"></span><br />
+    <span id="bits"></span>
+</div>
+<div id="bottomLine">
+    <img src="/static/images/icons/blacks/16x16/contact_card.png" alt="Contacts" />
+</div>
+
+<div id="wrapper">
+    <div class="playlistHolder">
+      <br clear="all" style="line-height:54px;" />
+      <ul id="playlist"></ul>
+      <br clear="all" />
+      <br clear="all" />
+    </div>
+</div>
+<div style="position:absolute; width:0%; height:0%; top:0px; left:0px;">
+<!-- Loadings -->
+<div id="loadingShadow">&nbsp;</div>
+<div id="loading">Loading..</div>
+<!-- Loadings EOF -->
+</div>
+
+
+</body>
+</html>

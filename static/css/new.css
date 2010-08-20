@@ -1,0 +1,106 @@
+HTML, BODY {
+    font-family:Verdana,Tahoma, Arial;
+    font-size:12px;
+    color:#000;
+    padding:0px;
+    margin:0px;
+    height:100%;
+    width:100%;
+}
+A IMG {
+    border:0px;
+}
+
+
+
+div#loadingShadow {
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0px;
+    left:0px;
+    background: rgba(0, 0, 0, 0.7);
+}
+div#loading {
+    width:200px;
+    height:24px;
+    line-height:24px;
+    position:fixed;
+    top:50%;
+    left:50%;
+    margin-left:-100px;
+    margin-top:-12px;
+    background:#FFF;
+    padding:5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+}
+.bold {
+    font-weight:bold;
+}
+
+A IMG {
+    border:0px;
+}
+
+#list tr {
+}
+
+span.icon {
+    padding:2px 8px;
+}
+span.icon.login {
+    background:url('/static/images/icons/16/lock_go.png') top left no-repeat;
+    margin-right:5px;
+}
+span.icon.logout {
+    background:url('/static/images/icons/16/lock_break.png') top left no-repeat;
+    margin-right:5px;
+}
+span.icon.user {
+    background:url('/static/images/icons/16/group.png') top left no-repeat;
+    margin-right:2px;
+}
+
+/*** ***/
+#head, #content {
+    width:980px;
+    margin:0px auto;
+}
+#player {
+    width:600px;
+    float:left;
+}
+#menu {
+    width:380px;
+    float:left;
+    text-align:right;
+}
+#player div.controls {
+    width:80px;
+    float:left;
+}
+#player div.controls a, #player div.controls a img {
+    padding:0px;
+    margin:0px;
+}
+
+
+/*** ***/
+ul {
+    list-style:none;
+    padding:0px;
+    margin:0px;
+}
+ul li {
+    margin:0px;
+    padding:0px;
+    float:left;
+}
+#player #data {
+    width:40px;
+    background: rgba(0, 0, 0, 0.7);
+    float:left;
+    height:16px;
+}

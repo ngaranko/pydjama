@@ -1,0 +1,36 @@
+{"songs":[
+ {"name":"D'n'B", "author":2, "album":1, "uri":"http://www.ex.ua/get/3607372", "authorName":"VA", "albumName":"VA"},
+ {"name":"Aces High", "author":1, "album":1, "uri":"http://www.ex.ua/get/2374540", "authorName":"Children of Bodom", "albumName":"Sceletons Int The Closet"},
+ {"name":"Don't Stop At The Top", "author":1, "album":1, "uri":"http://www.ex.ua/get/2374541", "authorName":"Children of Bodom", "albumName":"Sceletons Int The Closet"},
+ {"name":"Silent Scream", "author":1, "album":1, "uri":"http://www.ex.ua/get/2374554", "authorName":"Children of Bodom", "albumName":"Sceletons Int The Closet"},
+ {"name":"Somebody Put Something In My Drink (Ramones Cover)", "author":1, "album":1, "uri":"http://www.ex.ua/get/2374555", "authorName":"Children of Bodom", "albumName":"Sceletons Int The Closet"},
+ 
+ {"name":"Hordes Of Chaos", "author":2, "album":1, "uri":"http://www.ex.ua/get/3283616", "authorName":"Kreator", "albumName":"Hordes Of Chaos"},
+ {"name":"War Curse", "author":2, "album":1, "uri":"http://www.ex.ua/get/3283622", "authorName":"Kreator", "albumName":"Hordes Of Chaos"},
+ {"name":"Escalation", "author":2, "album":1, "uri":"http://www.ex.ua/get/3283623", "authorName":"Kreator", "albumName":"Hordes Of Chaos"},
+ {"name":"Amok Run", "author":2, "album":1, "uri":"http://www.ex.ua/get/3283626", "authorName":"Kreator", "albumName":"Hordes Of Chaos"},
+ {"name":"Destroy What Destroys You", "author":2, "album":1, "uri":"http://www.ex.ua/get/3283627", "authorName":"Kreator", "albumName":"Hordes Of Chaos"},
+ {"name":"Radical Resistance", "author":2, "album":1, "uri":"http://www.ex.ua/get/3283630", "authorName":"Kreator", "albumName":"Hordes Of Chaos"},
+ {"name":"Absolute Misantrophy", "author":2, "album":1, "uri":"http://www.ex.ua/get/3283632", "authorName":"Kreator", "albumName":"Hordes Of Chaos"},
+ {"name":"To The Afterborn", "author":2, "album":1, "uri":"http://www.ex.ua/get/3283634", "authorName":"Kreator", "albumName":"Hordes Of Chaos"},
+ {"name":"Corps Of Liberty", "author":2, "album":1, "uri":"http://www.ex.ua/get/3283635", "authorName":"Kreator", "albumName":"Hordes Of Chaos"},
+ {"name":"Demon Prince", "author":2, "album":1, "uri":"http://www.ex.ua/get/3283637", "authorName":"Kreator", "albumName":"Hordes Of Chaos"},
+ 
+ {"name":"Enemy Of God", "author":2, "album":2, "uri":"http://www.ex.ua/get/2430619", "authorName":"Kreator", "albumName":"Enemy Of God"},
+ {"name":"Impossible Brutality", "author":2, "album":2, "uri":"http://www.ex.ua/get/2430635", "authorName":"Kreator", "albumName":"Enemy Of God"},
+ {"name":"Suicide Terrorist", "author":2, "album":2, "uri":"http://www.ex.ua/get/2430653", "authorName":"Kreator", "albumName":"Enemy Of God"},
+ {"name":"World Anarchy", "author":2, "album":2, "uri":"http://www.ex.ua/get/2430660", "authorName":"Kreator", "albumName":"Enemy Of God"},
+ {"name":"Dystopia", "author":2, "album":2, "uri":"http://www.ex.ua/get/2430673", "authorName":"Kreator", "albumName":"Enemy Of God"},
+ {"name":"Voices Of The Dead", "author":2, "album":2, "uri":"http://www.ex.ua/get/2430694", "authorName":"Kreator", "albumName":"Enemy Of God"},
+ {"name":"Murder Fantasies", "author":2, "album":2, "uri":"http://www.ex.ua/get/2430713", "authorName":"Kreator", "albumName":"Enemy Of God"},
+ {"name":"When Death Takes It's Dominion", "author":2, "album":2, "uri":"http://www.ex.ua/get/2430730", "authorName":"Kreator", "albumName":"Enemy Of God"},
+ {"name":"One Evil Comes - A Million Follow", "author":2, "album":2, "uri":"http://www.ex.ua/get/2430749", "authorName":"Kreator", "albumName":"Enemy Of God"},
+ {"name":"Dying Race Apocalypse", "author":2, "album":2, "uri":"http://www.ex.ua/get/2430756", "authorName":"Kreator", "albumName":"Enemy Of God"},
+ {"name":"Under A Total Blackened Sky", "author":2, "album":2, "uri":"http://www.ex.ua/get/2430770", "authorName":"Kreator", "albumName":"Enemy Of God"},
+ {"name":"The Aancient Plague", "author":2, "album":2, "uri":"http://www.ex.ua/get/2430809", "authorName":"Kreator", "albumName":"Enemy Of God"},
+ 
+ {"name":"D'n'B", "author":2, "album":1, "uri":"http://www.ex.ua/get/3607372", "authorName":"VA", "albumName":"VA"},
+ {"name":"D'n'B", "author":2, "album":1, "uri":"http://www.ex.ua/get/3607373", "authorName":"VA", "albumName":"VA"},
+ {"name":"D'n'B", "author":2, "album":1, "uri":"http://www.ex.ua/get/3607374", "authorName":"VA", "albumName":"VA"},
+]}
+

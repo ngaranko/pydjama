@@ -1,0 +1,83 @@
+<html>
+<head>
+<link rel="stylesheet" href="/static/css/new.css" type="text/css" />
+
+<script type="text/javascript">
+{% if user %}
+    var mainJsonUri = '/api/songs/main.json';
+    var isUser = true;
+{% else %}
+    var mainJsonUri = '/main.json';
+    var isUser = false;
+{% endif %}
+
+</script>
+<script src="http://ajax.googleapis.com/ajax/libs/dojo/1.5/dojo/dojo.xd.js" type="text/javascript" djConfig="parseOnLoad: true"></script>
+<script src="/static/js/default.js" type="text/javascript"></script>
+<script type="text/javascript">
+var progressSlider, volumeSlider;
+
+</script>
+
+</head>
+<body>
+<object 
+    class="playerpreview" 
+    id="myFlash" 
+    type="application/x-shockwave-flash" 
+    data="/static/player_mp3_js.swf" 
+    width="1" 
+    height="1">
+    
+    <param name="movie" value="/static/player_mp3_js.swf" />
+    <param name="AllowScriptAccess" value="always" />
+    <param name="FlashVars" value="listener=Player&amp;interval=500" />
+    
+</object>
+<div id="head">
+ <div id="player">
+    <div class="controls">
+        <ul>
+            <li><a href="javascript:void(0);" onclick="Player.playPrev();"><img src="/static/images/icons/16/control_start_blue.png" alt="" /></a></li>
+            <li><a href="javascript:void(0);" onclick="Player.play();"><img src="/static/images/icons/16/control_play_blue.png" alt="" /></a></li>
+            <li><a href="javascript:void(0);" onclick="Player.pause();"><img src="/static/images/icons/16/control_pause.png" id="bttnPause" alt="" /></a></li>
+            <li><a href="javascript:void(0);" onclick="Player.playNext();"><img src="/static/images/icons/16/control_end_blue.png" alt="" /></a></li>
+            <li><a href="javascript:void(0);" onclick="Player.stop();"><img src="/static/images/icons/16/control_stop_blue.png" alt="" /></a></li>
+        </ul>
+    </div>
+    <div id="data">
+    </div>
+ </div>
+ <div id="menu">
+{% if user %}
+<span class="icon user"> </span> {{ user }}
+{% endif %}
+ <span class="icon logout"> </span> <a href="{{ url }}">{{ url_linktext }}</a>
+ </div><br clear="all" />
+</div>
+<div id="content">
+ <table width="100%" cellspacing=0 cellpadding=0 border=0 id="list">
+    <tr>
+        <td>1</td>
+        <td>Suicide</td>
+        <td>Metallica</td>
+        <td>Death Magnetic</td>
+        <td>2008</td>
+        <td>
+            <a href=""><img src="/static/images/icons/16/building_go.png" /></a>
+        </td>
+    </tr>
+ </table>
+</div>
+
+<div style="position:absolute; width:0%; height:0%; top:0px; left:0px;">
+<!-- Loadings -->
+<div id="loadingShadow">&nbsp;</div>
+<div id="loading">Loading..</div>
+<!-- Loadings EOF -->
+</div>
+
+
+</body>
+</html>
+

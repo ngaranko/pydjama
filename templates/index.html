@@ -1,0 +1,10 @@
+test
+<pre>
+{% if user %}
+{{ user }}
+{% endif %}
+</pre>
+<a href="{{ url }}">{{ url_linktext }}</a><br />
+{% for song in songs %}
+  {{ song.name }} {{ song.uri }} | {{song.albumYear}}<br />
+{% endfor %}

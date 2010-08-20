@@ -1,0 +1,15 @@
+<form action="" method="post">
+    Song name:<br />
+    <input type="text" name="songName" value="" /><br />
+    Song Author:<br />
+    <input type="text" name="authorName" value="{{ params.authorName }}" /><br />
+    Song Album name:<br />
+    <input type="text" name="albumName" value="{{ params.albumName }}" /><br />
+    Song Album year:<br />
+    <input type="text" name="albumYear" value="{{ params.albumYear }}" /><br />
+    Song Uri:<br />
+    <input type="text" name="uri" value="" autocomplete="off" /> like: http://www.ex.ua/get/3628805<br />
+    <br /><br />
+    <input type="checkbox" name="isAlbum" /> I'm adding album.<br />
+    <input type="submit" name="submit" value="Add Song" />
+</form>
