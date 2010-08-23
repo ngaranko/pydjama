@@ -3,11 +3,12 @@
 <link rel="stylesheet" href="/static/css/new.css" type="text/css" />
 
 <script type="text/javascript">
+var isMy = false;
 {% if user %}
     var mainJsonUri = '/api/songs/main.json';
     var isUser = true;
 {% else %}
-    var mainJsonUri = '/main.json';
+    var mainJsonUri = '/api/songs/main.json';
     var isUser = false;
 {% endif %}
 
@@ -50,12 +51,14 @@ var progressSlider, volumeSlider;
  </div>
  <div id="menu">
 {% if user %}
-<span class="icon user"> </span> {{ user }}
+<a href="javascript:void(0);" onclick="isMy=false;Player.load('/api/songs/main.json');" id="mainPlaylistBttn">Main Playlist</a> ::
+<a href="javascript:void(0);" onclick="isMy=true;Player.load('/api/playlist/my.json');" id="myPlaylistBttn">My Playlist</a> | <span class="icon user"> </span> {{ user }}
 {% endif %}
  <span class="icon logout"> </span> <a href="{{ url }}">{{ url_linktext }}</a>
  </div><br clear="all" />
 </div>
 <div id="content">
+<br />
  <table width="100%" cellspacing=0 cellpadding=0 border=0 id="list">
     <tr>
         <td>1</td>
@@ -75,6 +78,7 @@ var progressSlider, volumeSlider;
 <div id="loadingShadow">&nbsp;</div>
 <div id="loading">Loading..</div>
 <!-- Loadings EOF -->
+
 </div>
 
 

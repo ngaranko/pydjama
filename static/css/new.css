@@ -68,6 +68,15 @@ span.icon.user {
     width:980px;
     margin:0px auto;
 }
+#head {
+    position:fixed;
+    background:#FFF;
+    width:1000px;
+    margin:0px;
+    margin-left:-500px;
+    top:0px;
+    left:50%;
+}
 #player {
     width:600px;
     float:left;
@@ -99,8 +108,14 @@ ul li {
     float:left;
 }
 #player #data {
-    width:40px;
+    width:0px;
     background: rgba(0, 0, 0, 0.7);
     float:left;
     height:16px;
+}
+
+/** Playlist **/
+#list tr:hover {
+    background:#D3E8FF;
+    cursor:pointer;
 }

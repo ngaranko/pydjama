@@ -106,6 +106,7 @@ application = webapp.WSGIApplication(
                                       ('/api/songs/main.json',indexApiController.indexAction),
                                       ('/api/songs/my.json',indexApiController.myAction),
                                       ('/api/playlist/addToMy.json', playlistApiController.addAction),
+                                      ('/api/playlist/removeFromMy.json', playlistApiController.removeFromMyAction),
                                       ('/api/playlist/my.json', playlistApiController.myAction),
                                       ('/main.json', Json)],
                                      debug=True)
