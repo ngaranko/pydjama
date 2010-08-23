@@ -71,11 +71,20 @@ span.icon.user {
 #head {
     position:fixed;
     background:#FFF;
-    width:1000px;
+    width:980px;
     margin:0px;
-    margin-left:-500px;
+    margin-left:-490px;
     top:0px;
     left:50%;
+    
+    -moz-border-radius:0px 0px 6px 6px;
+    background-color:#FFFFFF;
+    border-color:#E8E8E8 #DDDDDD #DDDDDD #E8E8E8;
+    border-style:solid;
+    border-width:1px;
+    font-size:1em;
+    margin-bottom:1em;
+    padding:3px 10px;
 }
 #player {
     width:600px;
@@ -119,3 +128,21 @@ ul li {
     background:#D3E8FF;
     cursor:pointer;
 }
+#list tr td {
+    border-bottom:1px dotted #DDD;
+    padding:3px 4px;
+}
+
+.widget {
+    width:700px;
+    -moz-border-radius:6px 6px 6px 6px;
+    background-color:#FFFFFF;
+    border-color:#E8E8E8 #DDDDDD #DDDDDD #E8E8E8;
+    border-style:solid;
+    border-width:1px;
+    font-size:1em;
+    margin-bottom:1em;
+    padding:1em;
+    position:relative;
+}
+
