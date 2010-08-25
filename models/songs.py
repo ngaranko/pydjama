@@ -2,6 +2,7 @@
 from google.appengine.ext import db
 
 class Song(db.Model):
+    id = db.Key()
     owner = db.UserProperty()
     name = db.StringProperty(multiline=False)
     author = db.StringProperty(multiline=False)
