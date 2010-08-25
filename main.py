@@ -69,6 +69,7 @@ class MainDemoPage(webapp.RequestHandler):
         else:
           url = users.create_login_url(self.request.uri)
           url_linktext = 'Login'
+        
     
         template_values = {
           'user': users.get_current_user(),
@@ -98,13 +99,14 @@ class Guestbook(webapp.RequestHandler):
 
 
 application = webapp.WSGIApplication(
-                                     [('/', MainDemoPage),
+                                     [('/', indexController.indexAction),
                                       ('/lite', MainLitePage),
                                       ('/sign', Guestbook),
                                       ('/test', indexController.indexAction),
                                       ('/test/add', indexController.addAction),
                                       ('/api/songs/main.json',indexApiController.indexAction),
                                       ('/api/songs/my.json',indexApiController.myAction),
+                                      (r'/api/songs/author/(.*)\.json', indexApiController.authorAction),
                                       ('/api/playlist/addToMy.json', playlistApiController.addAction),
                                       ('/api/playlist/removeFromMy.json', playlistApiController.removeFromMyAction),
                                       ('/api/playlist/my.json', playlistApiController.myAction),

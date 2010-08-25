@@ -103,6 +103,9 @@ span.icon.user {
     padding:0px;
     margin:0px;
 }
+#player div.controls ul li {
+    float:left;
+}
 
 
 /*** ***/
@@ -114,7 +117,6 @@ ul {
 ul li {
     margin:0px;
     padding:0px;
-    float:left;
 }
 #player #data {
     width:0px;
@@ -144,5 +146,9 @@ ul li {
     margin-bottom:1em;
     padding:1em;
     position:relative;
+    float:left;
 }
-
+.widget.left {
+    width:215px;
+    margin-left:10px;
+}

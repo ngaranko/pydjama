@@ -2,7 +2,7 @@
 <head>
 
 <title>pyDjama :: Making mp3 closer to you</title>
-
+<link REL="SHORTCUT ICON" HREF="/static/images/icons/110.png">
 <link rel="stylesheet" href="/static/css/new.css" type="text/css" />
 
 <script type="text/javascript">
@@ -54,8 +54,8 @@ var progressSlider, volumeSlider;
  </div>
  <div id="menu">
 {% if user %}
-<a href="javascript:void(0);" onclick="isMy=false;Player.load('/api/songs/main.json');" id="mainPlaylistBttn">Main Playlist</a> ::
-<a href="javascript:void(0);" onclick="isMy=true;Player.load('/api/playlist/my.json');" id="myPlaylistBttn">My Playlist</a> | <span class="icon user"> </span> {{ user }}
+<a href="#main" onclick="isMy=false;Player.load('/api/songs/main.json');" id="mainPlaylistBttn">Main Playlist</a> ::
+<a href="#my" onclick="isMy=true;Player.load('/api/playlist/my.json');" id="myPlaylistBttn">My Playlist</a> | <span class="icon user"> </span> {{ user }}
 {% endif %}
  <span class="icon logout"> </span> <a href="{{ url }}">{{ url_linktext }}</a>
  </div><br clear="all" />
@@ -76,7 +76,17 @@ var progressSlider, volumeSlider;
     </tr>
  </table>
 </div>
+<div class="widget left">
+<b>Artists:</b>
+<ol id="artists">{{ artists }}</ol>
+<br />
+<!--<b>Share this:</b><br />
+<a href="http://www.facebook.com/sharer.php?u=http://djama.gnu.cc/#play/3726053" target="_blank"><img src="/static/images/icons/furl_48.png" alt="Share on Facebook" /></a>
+<a href="http://twitter.com/home?status=Currently listening http://djama.gnu.cc/#play/3726053" target="_blank" title="Click to share this post on Twitter"><img src="/static/images/icons/twitter_48.png" alt="Share on Twitter" title="Share on Twitter" /></a>-->
+</div>
 
+<br clear="all" />
+<small>Footer will be here</small>
 </div>
 
 <div style="position:absolute; width:0%; height:0%; top:0px; left:0px;">
@@ -86,7 +96,6 @@ var progressSlider, volumeSlider;
 <!-- Loadings EOF -->
 
 </div>
-
 
 </body>
 </html>

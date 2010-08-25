@@ -7,26 +7,42 @@ import os, re
 from models.songs import Song
 
 class indexAction(webapp.RequestHandler):
-  def get(self):
-    songsQuery = Song.all().order('-date')
-    songs = songsQuery.fetch(10)
+    def get(self):
+        
+        songsQuery = Song.all().order('-date')
+        songs = songsQuery.fetch(100)
+        
+        artists = []
+        artistsHtml = ''
+        for song in songs:
+            if song.author and song.author not in artists:
+                artists.append(song.author)
+                arUrl = re.sub(' ', '_', song.author)
+                artistsHtml += '<li>'
+                artistsHtml += '<a href="#artists/' + arUrl + '" '
+                artistsHtml +=  ' onClick="Player.load(\'/api/songs/author/' + arUrl + '.json\');">'
+                artistsHtml += song.author
+                artistsHtml += '</a>'
+                artistsHtml += '</li>'
+        
+        
+        if users.get_current_user():
+          url = users.create_logout_url(self.request.uri)
+          url_linktext = 'Logout'
+        else:
+          url = users.create_login_url(self.request.uri)
+          url_linktext = 'Login'
+        
     
-    if users.get_current_user():
-      url = users.create_logout_url(self.request.uri)
-      url_linktext = 'Logout'
-    else:
-      url = users.create_login_url(self.request.uri)
-      url_linktext = 'Login'
-
-    template_values = {
-      'url': url,
-      'url_linktext': url_linktext,
-      'user': users.get_current_user(),
-      'songs': songs
-      }
-
-    path = os.path.join(os.path.dirname(__file__), '../templates/index.html')
-    self.response.out.write(template.render(path, template_values))
+        template_values = {
+          'user': users.get_current_user(),
+          'url': url,
+          'url_linktext': url_linktext,
+          'artists': artistsHtml,
+          }
+        
+        path = os.path.join(os.path.dirname(__file__), '../templates/demo.html')
+        self.response.out.write(template.render(path, template_values))
 
 class addAction(webapp.RequestHandler):
   def get(self):
