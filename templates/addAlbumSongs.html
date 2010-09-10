@@ -1,0 +1,23 @@
+<html>
+<head>
+</head>
+<body>
+<form action="/add/album" method="POST">
+<form action="" method="post">
+    Song Author:<br />
+    <input type="text" name="authorName" value="{{ params.authorName }}" /><br />
+    Song Album name:<br />
+    <input type="text" name="albumName" value="{{ params.albumName }}" /><br />
+    Song Album year:<br />
+    <input type="text" name="albumYear" value="{{ params.albumYear }}" /><br />
+    <hr />
+    {% for song in params.songs %}
+    <br />
+    <input type="text" name="songName_{{ song.0 }}" value="{{ song.1 }}" style="width:250px" /> | <input type="text" name="uri_{{ song.0 }}" value="http://ex.ua/get/{{ song.0 }}" autocomplete="off" /><br />
+    {% endfor %}
+    <br /><br />
+    <input type="submit" name="submit" value="Add Songs" />
+</form>
+</form>
+</body>
+</html>

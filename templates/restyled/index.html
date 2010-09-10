@@ -1,0 +1,150 @@
+<html>
+<head>
+<style>
+body {
+    width:100%;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    background:url('http://farm3.static.flickr.com/2538/3995110776_f16e4b3a2a_b_d.jpg') top center no-repeat;
+}
+A IMG {
+    border:0px;
+}
+UL {
+    margin:0px;
+    padding:0px;
+    list-style:none;
+}
+#wrapper {
+    width:980px;
+    margin:0px auto;
+    background: rgba(255, 255, 255, 0.6)
+}
+.right {
+    float:right;
+}
+/** Icons **/
+.icon {
+    padding:1px 8px;
+}
+.icon.login {
+    background:url('/static/images/icons/16/lock_go.png') top left no-repeat;
+    margin-right:4px;
+}
+.icon.addToMy {
+    background:url('/static/images/icons/16/book_go.png') top left no-repeat;
+    cursor:pointer;
+}
+
+/** Player **/
+#player {
+    width:400px;
+    border:2px solid rgba(0,0,0,0.5);
+}
+#player div.nowPlaying div#nowImg {
+    width:100px;
+    height:100px;
+    overflow:hidden;
+    margin-right:5px;
+    float:left;
+}
+#player div.nowPlaying div.cont {
+    float:left;
+    width:290px;
+}
+#player div.nowPlaying #nowTracker {
+    background:rgba(0,0,0,0.5);
+    width:200px;
+}
+#player div.nowPlaying #nowTrackerLoaded {
+    background:rgba(255,0,0,0.5);
+    width:290px;
+    height:2px;
+}
+#player div.nowPlaying #nowTitle {
+    width:290px;
+    overflow:hidden;
+    height:20px;
+}
+
+#player ul.controls {
+    list-style:none;
+    margin-top:10px;
+}
+#player ul.controls li {
+    float:left;
+}
+
+div.contents {
+    width:980px;
+    clear:both;
+    margin-top:10px;
+}
+div#mainCol {
+    width:680px;
+    float:left;
+    margin-left:10px;
+    margin-right:10px;
+}
+div#sidebar {
+    width:270px;
+    float:left;
+}
+
+/** List **/
+ul#list li {
+    background:rgba(255,255,255,0.5);
+}
+
+</style>
+</head>
+<body>
+<div id="wrapper">
+
+<div id="menu">
+ <span class="icon login"> </span> <a href="">Login</a>
+</div>
+
+<div id="player">
+    <div class="nowPlaying">
+     <div id="nowImg"><img src="http://fs24.www.ex.ua/show/3814312/3814312.jpg?100" alt="" align="left" /></div>
+     <div class="cont">
+	     <div id="nowTitle">SEAN FEE - Progressive Mix 2009 SEAN FEE - Progressive Mix 2009 / Breaks</div>
+	     <div id="nowTracker">&nbsp;</div>
+         <div id="nowTrackerLoaded">&nbsp;</div>
+	    <ul class="controls">
+	        <li><a href="javascript:void(0);" onClick="Player.play();"><img src="/static/images/icons/32/control_start.png" /></a></li>
+	        <li><a href="javascript:void(0);" onClick="Player.play();"><img src="/static/images/icons/32/control_play.png" /></a></li>
+	        <li><a href="javascript:void(0);" onClick="Player.play();"><img src="/static/images/icons/32/control_stop.png" /></a></li>
+	        <li><a href="javascript:void(0);" onClick="Player.play();"><img src="/static/images/icons/32/control_end.png" /></a></li>
+	        <li><a href="javascript:void(0);" onClick="Player.play();"><img src="/static/images/icons/32/control_repeat.png" /></a></li>
+	    </ul>
+     </div>
+    </div>
+    <br clear="all" />
+</div>
+<div class="contents">
+<div id="mainCol">
+<ul id="list">
+<li>SEAN FEE - Progressive Mix 2009 / Breaks
+    <div class="right"><span class="icon addToMy"> </span></div>
+</li>
+</ul>
+</div>
+<div id="sidebar">
+ <b>Artists:</b>
+ <ul>
+    <li>Sean Fee</li>
+ </ul>
+ 
+ <b>Gernes:</b>
+ <ul>
+    <li>Breaks</li>
+ </ul>
+</div>
+</div>
+<br clear="all" />
+</div>
+</body>
+</html>
