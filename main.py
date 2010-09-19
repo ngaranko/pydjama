@@ -100,10 +100,12 @@ class Guestbook(webapp.RequestHandler):
 
 application = webapp.WSGIApplication(
                                      [('/', indexController.indexAction),
+                                      ('/beta', indexController.restyledAction),
                                       ('/lite', MainLitePage),
                                       ('/sign', Guestbook),
                                       ('/test', indexController.indexAction),
                                       ('/test/add', indexController.addAction),
+                                      ('/add/album', indexController.addAlbumAction),
                                       ('/api/songs/main.json',indexApiController.indexAction),
                                       ('/api/songs/my.json',indexApiController.myAction),
                                       (r'/api/songs/author/(.*)\.json', indexApiController.authorAction),

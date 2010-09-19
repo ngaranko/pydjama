@@ -59,7 +59,8 @@ class authorAction(webapp.RequestHandler):
     def get(self, authorName):
         authorName = re.sub('_', ' ', authorName)
         
-        sq = Song.gql("WHERE author = '%s'" % authorName)
+        #sq = Song.gql("WHERE author = '%s' ORDER BY date ASC" % authorName)
+        sq = Song.all().filter("author =", authorName).order("date")
         songs = sq.fetch(100)
         songsJson = ''
         id = 0

@@ -12,6 +12,11 @@ indexes:
 
 - kind: Song
   properties:
+  - name: author
+  - name: date
+
+- kind: Song
+  properties:
   - name: owner
   - name: date
     direction: desc

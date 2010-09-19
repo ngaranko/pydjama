@@ -76,6 +76,7 @@ span.icon.user {
     margin-left:-490px;
     top:0px;
     left:50%;
+    z-index:1001;
     
     -moz-border-radius:0px 0px 6px 6px;
     background-color:#FFFFFF;
