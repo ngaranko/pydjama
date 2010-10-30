@@ -8,40 +8,24 @@ import os, re
 from models.songs import Song
 from models.playlists import Playlist, PlaylistSong
 
-class indexAction(webapp.RequestHandler):
+from lib.djama import action
+from lib.json_utils import format_json
+
+class index(action):
   def get(self):
     songsQuery = Song.all().order('-date')
     songs = songsQuery.fetch(100)
     
-    songsJson = ''
-    id = 0
-    for song in songs:
-        songsJson += '{"name":"%s", "author":1, "album":1, "uri":"%s",' % (song.name, song.uri)
-        if song.author:
-            author = song.author
-        else:
-            author = 'VA'
-        if song.album:
-            album = song.album
-        else:
-            album = 'VA'
-            
-        songsJson += '"authorName":"%s", "albumName":"%s"}' % (author, album)
-        id += 1
-        if id != len(songs):
-            songsJson += ','
+    songs_json = format_json(songs)
     
-    self.response.out.write('{"songs":[%s]}' % songsJson)
+    self._print('{"songs":[%s]}' % songs_json)
 
-class addAction(webapp.RequestHandler):
+class add(action):
     def get(self):
-        sq = Song.all().filter("uri =", self.request.params['uri'])
-        songs = sq.fetch(1)
-        if len(songs) == 0:
+        song = Song.get_by_id(int(self.request.params['id']))
+        if not song:
             self.response.out.write('no song')
             return
-        else:
-            song = songs[0]
         
         pq = Playlist.all().filter("owner =", users.get_current_user())
         playlists = pq.fetch(1)
@@ -58,9 +42,10 @@ class addAction(webapp.RequestHandler):
         ps.playlist = pl
         ps.song = song
         ps.put()
-        self.response.out.write('done')
+        self._print('done')
+        
 
-class removeFromMyAction(webapp.RequestHandler):
+class remove_from_my(action):
     def get(self):
         sq = Song.all().filter("uri =", self.request.params['uri'])
         songs = sq.fetch(1)
@@ -82,9 +67,9 @@ class removeFromMyAction(webapp.RequestHandler):
         for lst in ps:
             if lst.song.uri == song.uri:
                 db.delete(lst)
-        self.response.out.write('done')
+        self._print('done')
 
-class myAction(webapp.RequestHandler):
+class my(action):
     def get(self):
         pq = Playlist.all().filter("owner =", users.get_current_user())
         playlists = pq.fetch(1)
@@ -98,22 +83,6 @@ class myAction(webapp.RequestHandler):
         for ps in psongs:
             songs.append(ps.song)
         
-        songsJson = ''
-        id = 0
-        for song in songs:
-            songsJson += '{"name":"%s", "author":1, "album":1, "uri":"%s",' % (song.name, song.uri)
-            if song.author:
-                author = song.author
-            else:
-                author = 'VA'
-            if song.album:
-                album = song.album
-            else:
-                album = 'VA'
-                
-            songsJson += '"authorName":"%s", "albumName":"%s"}' % (author, album)
-            id += 1
-            if id != len(songs):
-                songsJson += ','
+        songs_json = format_json(songs)
         
-        self.response.out.write('{"songs":[%s]}' % songsJson)
+        self._print('{"songs":[%s]}' % songs_json)

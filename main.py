@@ -24,94 +24,25 @@ from google.appengine.ext import db
 from controllers import indexController
 
 # Api controllers
-from controllers.api import indexApiController, playlistApiController
-
-
-class Greeting(db.Model):
-  author = db.UserProperty()
-  content = db.StringProperty(multiline=True)
-  date = db.DateTimeProperty(auto_now_add=True)
-  status = db.BooleanProperty()
-
-
-class MainPage(webapp.RequestHandler):
-  def get(self):
-    greetings_query = Greeting.all().order('-date')
-    greetings = greetings_query.fetch(10)
-
-    if users.get_current_user():
-      url = users.create_logout_url(self.request.uri)
-      url_linktext = 'Logout'
-    else:
-      url = users.create_login_url(self.request.uri)
-      url_linktext = 'Login'
-
-    template_values = {
-      'greetings': greetings,
-      'url': url,
-      'url_linktext': url_linktext,
-      }
-
-    path = os.path.join(os.path.dirname(__file__), 'index.html')
-    self.response.out.write(template.render(path, template_values))
-
-class MainLitePage(webapp.RequestHandler):
-    def get(self):
-        
-        path = os.path.join(os.path.dirname(__file__), 'index_lite.html')
-        self.response.out.write(template.render(path, {'user':users.get_current_user()}))
-
-class MainDemoPage(webapp.RequestHandler):
-    def get(self):
-        if users.get_current_user():
-          url = users.create_logout_url(self.request.uri)
-          url_linktext = 'Logout'
-        else:
-          url = users.create_login_url(self.request.uri)
-          url_linktext = 'Login'
-        
-    
-        template_values = {
-          'user': users.get_current_user(),
-          'url': url,
-          'url_linktext': url_linktext,
-          }
-        
-        path = os.path.join(os.path.dirname(__file__), 'templates/demo.html')
-        self.response.out.write(template.render(path, template_values))
+from controllers.api import index_api_controller, playlist_api_controller
 
 class Json(webapp.RequestHandler):
   def get(self):
     path = os.path.join(os.path.dirname(__file__), 'json.tpl')
     self.response.out.write(template.render(path, {}))
 
-class Guestbook(webapp.RequestHandler):
-  def post(self):
-    greeting = Greeting()
-
-    if users.get_current_user():
-      greeting.author = users.get_current_user()
-
-    greeting.content = self.request.get('content')
-    greeting.status = True
-    greeting.put()
-    self.redirect('/')
-
 
 application = webapp.WSGIApplication(
                                      [('/', indexController.indexAction),
                                       ('/beta', indexController.restyledAction),
-                                      ('/lite', MainLitePage),
-                                      ('/sign', Guestbook),
-                                      ('/test', indexController.indexAction),
                                       ('/test/add', indexController.addAction),
                                       ('/add/album', indexController.addAlbumAction),
-                                      ('/api/songs/main.json',indexApiController.indexAction),
-                                      ('/api/songs/my.json',indexApiController.myAction),
-                                      (r'/api/songs/author/(.*)\.json', indexApiController.authorAction),
-                                      ('/api/playlist/addToMy.json', playlistApiController.addAction),
-                                      ('/api/playlist/removeFromMy.json', playlistApiController.removeFromMyAction),
-                                      ('/api/playlist/my.json', playlistApiController.myAction),
+                                      ('/api/songs/main.json',index_api_controller.index),
+                                      ('/api/songs/my.json',index_api_controller.my),
+                                      (r'/api/songs/author/(.*)\.json', index_api_controller.author),
+                                      ('/api/playlist/add_to_my.json', playlist_api_controller.add),
+                                      ('/api/playlist/remove_from_my.json', playlist_api_controller.remove_from_my),
+                                      ('/api/playlist/my.json', playlist_api_controller.my),
                                       ('/main.json', Json)],
                                      debug=True)
 
