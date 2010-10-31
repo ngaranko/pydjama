@@ -9,6 +9,8 @@ from google.appengine.api import urlfetch
 
 from models.songs import Song
 
+from lib.djama import action, widget
+
 class indexAction(webapp.RequestHandler):
     def get(self):
         
@@ -183,3 +185,9 @@ class addAlbumAction(webapp.RequestHandler):
                 handleError(e)
     
     self.response.out.write('Done. <a href="/">Go and see it</a>')
+
+
+class alpha(action):
+    def get(self):
+        
+        self._display('alpha/index')

@@ -35,6 +35,7 @@ class Json(webapp.RequestHandler):
 application = webapp.WSGIApplication(
                                      [('/', indexController.indexAction),
                                       ('/beta', indexController.restyledAction),
+                                      ('/a', indexController.alpha),
                                       ('/test/add', indexController.addAction),
                                       ('/add/album', indexController.addAlbumAction),
                                       ('/api/songs/main.json',index_api_controller.index),

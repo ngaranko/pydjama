@@ -1,0 +1,9 @@
+header:
+  - name: logged
+    acl:
+      - auth: user
+    
+  - name: not_logged
+    acl:
+      - auth: guest
+
