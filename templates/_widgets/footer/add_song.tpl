@@ -1,4 +1,4 @@
-<a href="javascript:void(0);" onclick="add_song_show();">Add new Song</a>
+
 <div id="add_song">
  <form action="/api/songs/add_song.json" method="post" id="add_song_form">
  <b>Add Song:</b><br />

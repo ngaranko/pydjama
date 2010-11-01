@@ -11,7 +11,7 @@ class action(webapp.RequestHandler):
     def _print(self, string):
         self.response.out.write(string)
     
-    def _display(self, template_name):
+    def _display(self, template_name, template_params = {}):
         
         _template_path = os.path.join(os.path.dirname(__file__), '../templates/%s.tpl' % template_name)
         
@@ -30,6 +30,7 @@ class action(webapp.RequestHandler):
         self.widgets = {}
         
         try:
+            
             widgets_config = yaml.load(open(widgets_config_path, 'r'))
         except Exception, e:
             return

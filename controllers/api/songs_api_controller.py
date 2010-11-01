@@ -1,7 +1,10 @@
 
+import re
+
 from google.appengine.api import users
 
 from lib.djama import action
+from lib.json_utils import format_json
 
 from models.songs import Song
 
@@ -34,3 +37,11 @@ class add_song(action):
             self._print('{"status":"1", "message":"Added successully"}')
         else:
             self._print('{"status":"0", "message":"Not all fields are filled"}')
+
+class artist(action):
+    def get(self, author_name):
+        author_name = re.sub('_', ' ', author_name)
+        
+        sq = Song.all().filter("author =", author_name).order("date")
+        
+        self._print('{"songs":[%s]}' % format_json(sq.fetch(100)))

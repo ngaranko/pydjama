@@ -5,11 +5,18 @@
   left:50%;
   width:500px;
   margin-left:-250px;
-  display:none;
+  /*display:none;*/
+  background:#F0F0F0;
+  padding:10px;
+  line-height:28px;
 }
 
 #add_song input {
   border:1px solid #000;
   background:#F1FFDE;
+}
+#add_song label {
+  width:150px;
+  display:inline;
 }
 

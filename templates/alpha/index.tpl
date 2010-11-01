@@ -4,6 +4,9 @@
  <script type="text/javascript">
  var mainJsonUri = '/api/songs/main.json';
  </script>
+ <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.5/dojo/dojo.xd.js" type="text/javascript"></script>
+ <script src="/static/js/player/player.js" type="text/javascript"></script>
+ 
 </head>
 <body>
 <object 
@@ -19,6 +22,7 @@
     <param name="FlashVars" value="listener=Player&amp;interval=500" />
     
 </object>
+<div class="wrapper">
 {% if widgets.header %}
  {% for widget in widgets.header %}
   {{ widget }}
@@ -39,12 +43,26 @@
         </ul>
     </div>
 </div>
+<div id="now_playing">Now Playing uri: <input type="text" id="now_playing_uri" /></div>
+<br clear="all" />
+<hr />
+<br clear="both" />
+<div class="content">
+<b>Playlist:</b><b
 <ul id="playlist">
 </ul>
+</div>
 
+<div class="left">
+<b>Artists:</b><br />
+<ul id="artists">
+</ul>
+<a href="javascript:void(0);" onclick="Player.load_list('main')">Main Playlist</a>
+</div>
+<br clear="all" />
+</div>
 <link rel="stylesheet" href="/static/css/alpha/index.css" type="text/css" />
-<script src="http://ajax.googleapis.com/ajax/libs/dojo/1.5/dojo/dojo.xd.js" type="text/javascript"></script>
-<script src="/static/js/player/player.js" type="text/javascript"></script>
+<script src="/static/js/alpha.js" type="text/javascript"></script>
 {% if widgets.footer %}
  {% for widget in widgets.footer %}
   {{ widget }}

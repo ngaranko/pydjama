@@ -11,6 +11,8 @@ Player.onInit = function() {
     this.flash = document.getElementById("myFlash");
     this.uri = '';
     
+    this.pl = '#main';
+    
     this.songs = new Array();
     
     this.load();
@@ -59,7 +61,10 @@ Player.onUpdate = function() {
     }*/
     
     // IDv3 {
-    if (this.isPlaying) {
+    if (this.isPlaying == 'true') {
+        dojo.byId('now_playing_uri').value = window.location.href.replace(window.location.hash, '') + this.pl + '/play/' + this.nowPlaying;
+        
+        window.location.hash = this.pl + '/play/' + this.nowPlaying;
         /*console.log(this.id3_artist);
         console.log(this.id3_album);
         console.log(this.id3_songname);
@@ -68,12 +73,18 @@ Player.onUpdate = function() {
         console.log(this.id3_track);
         console.log(this.id3_comment);*/
 
+    } else {
+      window.location.hash = this.pl;
     }
     //}
 
 }
 Player.play = function(id) {
     var _uri = 'http://www.ex.ua/get/450580';
+    
+    if (id == -1) {
+      id = this.nowPlaying;
+    }
     
     if (this.uri != '' && id == undefined) {
         id = this.nowPlaying;
@@ -112,14 +123,69 @@ Player.stop = function() {
     this.flash.SetVariable("method:stop", "");
 }
 
+Player.load_list = function(type, play, id) {
+  window.location.hash = '#' + type;
+
+  if (play) {
+    window.location.hash += '/play';
+    if (id) {
+      window.location.hash += '/' + parseInt(id);
+    }
+  }
+  Player.load();
+}
+
 Player.load = function() {
     var uri = '/main.json';
+    var auto_play = false;
     if (undefined != mainJsonUri) {
         uri = mainJsonUri;
     }
     if (window.location.hash == '#my') {
         uri = '/api/playlist/my.json';
+        this.pl = '#my';
     }
+    
+    if (window.location.hash.substr(0, 5) == '#main') {
+      var _play = window.location.hash.split('/');
+      if (_play[0] == '#main') {
+        this.pl = '#main';
+        uri = '/api/songs/main.json';
+      }
+      if ((_play.length >= 2) && (_play[1] == 'play')) {
+        auto_play = true;
+      }
+      if (_play.length >= 3) {
+        Player.nowPlaying = parseInt(_play[2]);
+      }
+    }
+    
+    if (window.location.hash.substr(0, 8) == '#artist/') {
+      var _artist = window.location.hash.substr(8, window.location.hash.length).split('/');
+      this.pl = '#artist';
+      if (_artist.length >= 1) {
+        this.pl += '/' + _artist[0];
+        
+        uri = '/api/songs/artist/' + _artist[0] + '.json';
+        if ((_artist.length >= 2) && (_artist[1] == 'play')) {
+          auto_play = true;
+        }
+        if (_artist.length >= 3) {
+          Player.nowPlaying = parseInt(_artist[2]);
+        } 
+      }
+    }
+    
+    if (window.location.hash.substr(0, 5) == '#play') {
+      var _play = window.location.hash.split('/');
+      if (_play[0] == '#play') {
+        auto_play = true;
+      }
+      if (_play.length >= 2) {
+        Player.nowPlaying = parseInt(_play[1]);
+      }
+    }
+    
     dojo.xhrGet({
         url:uri,
         //url:"/api/songs/main.json",
@@ -144,6 +210,9 @@ Player.load = function() {
             loading.style.display = 'none';
             var loadingShadow = dojo.byId('loading_shadow');
             loadingShadow.style.display = 'none';
+            if (auto_play) {
+              Player.play(-1);
+            }
         }
     });
 }
