@@ -22,13 +22,6 @@ Player.onUpdate = function() {
     //this.duration;
     //this.bytesPercent;
     
-    
-    this._p = document.getElementById("pos");
-    this._b = document.getElementById("bits");
-    var _percent = this.position / (this.duration / 100);
-    this._p.innerHTML = this.position + '/' + this.duration + '|' + _percent;
-    this._b.innerHTML = this.bytesLoaded + "/" + this.bytesTotal + " ("     + this.bytesPercent + "%)";
-
     //progressSlider.setValue(_percent);
     if (this.bytesPercent == 100) {
         var onePercent = this.duration/100;
@@ -36,6 +29,14 @@ Player.onUpdate = function() {
             this.playNext();
         }
     }
+    
+    /*
+    this._p = document.getElementById("pos");
+    this._b = document.getElementById("bits");
+    var _percent = this.position / (this.duration / 100);
+    this._p.innerHTML = this.position + '/' + this.duration + '|' + _percent;
+    this._b.innerHTML = this.bytesLoaded + "/" + this.bytesTotal + " ("     + this.bytesPercent + "%)";
+
     
     // Filled bar {
     if (undefined != document.getElementById('filled')) {
@@ -49,13 +50,13 @@ Player.onUpdate = function() {
         var dfilled = document.getElementById('downloadFilled');
         dfilled.style.width = 7.5 * parseInt(this.bytesPercent);
     }
-    // }
+    // }*/
     
-    if (this.isPlaying) {
+    /*if (this.isPlaying) {
         document.getElementById('nowName').innerHTML = this._formatName(this.songs[this.nowPlaying]);
         document.getElementById('downloadIt').style.display = 'inline';
         document.getElementById('downloadIt').href = this.songs[this.nowPlaying].uri;
-    }
+    }*/
     
     // IDv3 {
     if (this.isPlaying) {
@@ -75,7 +76,6 @@ Player.play = function(id) {
     var _uri = 'http://www.ex.ua/get/450580';
     
     if (this.uri != '' && id == undefined) {
-        console.log('Resume');
         id = this.nowPlaying;
     } else {
         if (undefined == this.songs[id]) {
@@ -93,9 +93,9 @@ Player.play = function(id) {
     this.flash.SetVariable("enabled", "true");
     
     // Setting Volume
-    if (undefined != volumeSlider) {
+    /*if (undefined != volumeSlider) {
         this.setVolume(volumeSlider.value);
-    }
+    }*/
     
     for (var d in ols) {
         dojo.removeClass(ols[d],'bold');
@@ -126,7 +126,8 @@ Player.load = function() {
         handleAs:"json",
         load: function(data){
             console.log('Loading complete');
-            var list = document.getElementById('playlist');
+            var list = dojo.byId('playlist');
+            list.innerHTML = '';
             for(var i in data['songs']){
                ols[i] = document.createElement('li');
                ols[i].ids = i;
@@ -139,9 +140,9 @@ Player.load = function() {
             }
             Player.songs = data['songs'];
             
-            var loading = document.getElementById('loading');
+            var loading = dojo.byId('loading');
             loading.style.display = 'none';
-            var loadingShadow = document.getElementById('loadingShadow');
+            var loadingShadow = dojo.byId('loading_shadow');
             loadingShadow.style.display = 'none';
         }
     });
@@ -173,7 +174,7 @@ Player._formatName = function(song, includeDownload) {
     temp += song.name;
     temp += ' (' + song.albumName + ')';
     
-    if (undefined != includeDownload) {
+    /*if (undefined != includeDownload) {
         temp += '<a href="' + song.uri + '" target="_blank">';
         temp += '<img src="/static/images/icons/';
             temp += Theme.color
@@ -185,7 +186,7 @@ Player._formatName = function(song, includeDownload) {
     if (isUser && window.location.hash != '#my') {
         temp += '<a href="javascript:void(0);" onclick="Player.addToMy(\'' + song.uri + '\');">'
         temp += '<img src="/static/images/icons/building_go.png" /></a>';
-    }
+    }*/
     
     return temp;
 }

@@ -1,0 +1,15 @@
+
+#add_song {
+  position:absolute;
+  top:50px;
+  left:50%;
+  width:500px;
+  margin-left:-250px;
+  display:none;
+}
+
+#add_song input {
+  border:1px solid #000;
+  background:#F1FFDE;
+}
+

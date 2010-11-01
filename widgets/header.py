@@ -5,7 +5,8 @@ from lib.djama import widget
 
 class logged(widget):
     def pre_dispatch(self):
-        print 'jaaa'
+        self.template_vals['user'] = users.get_current_user()
+        self.template_vals['url'] = users.create_logout_url('/')
         
 
 class not_logged(widget):

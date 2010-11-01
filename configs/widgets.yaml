@@ -7,3 +7,8 @@ header:
     acl:
       - auth: guest
 
+footer:
+  - name: add_song
+    acl:
+      - auth: user
+

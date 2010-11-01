@@ -24,7 +24,7 @@ from google.appengine.ext import db
 from controllers import indexController
 
 # Api controllers
-from controllers.api import index_api_controller, playlist_api_controller
+from controllers.api import index_api_controller, playlist_api_controller, songs_api_controller
 
 class Json(webapp.RequestHandler):
   def get(self):
@@ -40,6 +40,7 @@ application = webapp.WSGIApplication(
                                       ('/add/album', indexController.addAlbumAction),
                                       ('/api/songs/main.json',index_api_controller.index),
                                       ('/api/songs/my.json',index_api_controller.my),
+                                      ('/api/songs/add_song.json', songs_api_controller.add_song),
                                       (r'/api/songs/author/(.*)\.json', index_api_controller.author),
                                       ('/api/playlist/add_to_my.json', playlist_api_controller.add),
                                       ('/api/playlist/remove_from_my.json', playlist_api_controller.remove_from_my),
