@@ -21,6 +21,7 @@ class action(webapp.RequestHandler):
         self.template_vals['user'] = users.get_current_user()
         
         self.template_vals['widgets'] = self.widgets
+        self.template_vals['widgets_css'] = self.widgets_css
         
         self._print(template.render(_template_path, self.template_vals))
     
@@ -28,6 +29,7 @@ class action(webapp.RequestHandler):
         widgets_config_path = os.path.join(os.path.dirname(__file__), '../configs/widgets.yaml')
         
         self.widgets = {}
+        self.widgets_css = []
         
         try:
             
@@ -59,6 +61,7 @@ class action(webapp.RequestHandler):
                         
                 _w.pre_dispatch()
                 self.widgets[position].append(_w.render())
+                self.widgets_css.append('/'.join([ position, widget_init['name'] ]))
             except ImportError, e:
                 pass # No widget
 

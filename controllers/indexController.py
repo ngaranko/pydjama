@@ -191,3 +191,4 @@ class alpha(action):
     def get(self):
         params = {}
         self._display('alpha/index')
+

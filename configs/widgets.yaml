@@ -12,3 +12,7 @@ footer:
     acl:
       - auth: user
 
+  - name: manager
+    acl:
+      - auth: user
+

@@ -6,7 +6,11 @@
  </script>
  <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.5/dojo/dojo.xd.js" type="text/javascript"></script>
  <script src="/static/js/player/player.js" type="text/javascript"></script>
- 
+ {% if widgets_css %}
+  {% for css in widgets_css %}
+   {{ css }}
+  {% endfor %}
+ {% endif %}
 </head>
 <body>
 <object 
@@ -48,7 +52,7 @@
 <hr />
 <br clear="both" />
 <div class="content">
-<b>Playlist:</b><b
+<b>Playlist:</b><br />
 <ul id="playlist">
 </ul>
 </div>

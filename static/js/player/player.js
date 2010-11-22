@@ -64,7 +64,7 @@ Player.onUpdate = function() {
     if (this.isPlaying == 'true') {
         dojo.byId('now_playing_uri').value = window.location.href.replace(window.location.hash, '') + this.pl + '/play/' + this.nowPlaying;
         
-        window.location.hash = this.pl + '/play/' + this.nowPlaying;
+        //window.location.hash = this.pl + '/play/' + this.nowPlaying;
         /*console.log(this.id3_artist);
         console.log(this.id3_album);
         console.log(this.id3_songname);
@@ -127,9 +127,9 @@ Player.load_list = function(type, play, id) {
   window.location.hash = '#' + type;
 
   if (play) {
-    window.location.hash += '/play';
+    //window.location.hash += '/play';
     if (id) {
-      window.location.hash += '/' + parseInt(id);
+      //window.location.hash += '/' + parseInt(id);
     }
   }
   Player.load();
